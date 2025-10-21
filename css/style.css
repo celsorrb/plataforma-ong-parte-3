@@ -46,6 +46,7 @@ body {
     line-height: 1.6;
     color: var(--cor-neutra-escura);
     background-color: var(--cor-fundo-claro);
+    /* Garante espaço para o header fixo */
     padding-top: 100px; 
 }
 
@@ -156,9 +157,9 @@ nav li a[aria-current="page"] {
     display: none; /* Escondido em mobile */
 }
 
-/* ESTILOS DE DROP DOWN (MOBILE) */
+/* ESTILOS DE DROP DOWN (MOBILE - ESCONDIDO) */
 .dropdown-menu {
-    /* CRÍTICO: ESCONDE o dropdown em mobile por padrão */
+    /* Por padrão, o sub-menu é uma lista simples, mas escondida */
     display: none;
     list-style: none;
     padding-left: var(--espacamento-md); 
@@ -166,13 +167,25 @@ nav li a[aria-current="page"] {
 }
 
 /* ========================================= */
-/* 3. TIPOGRAFIA E ESTILOS GERAIS (Reduzido por concisão) */
+/* 3. TIPOGRAFIA E ESTILOS GERAIS */
 /* ========================================= */
 h1, h2, h3 {
     font-family: var(--fonte-principal);
     color: var(--cor-principal);
     margin-bottom: var(--espacamento-sm);
 }
+
+hgroup {
+    margin-top: 0; 
+    margin-bottom: var(--espacamento-md); 
+}
+
+h1 { 
+    font-size: var(--tamanho-h1); 
+    margin-top: 0; 
+}
+h2 { font-size: var(--tamanho-h2); margin-top: var(--espacamento-lg); }
+h3 { font-size: var(--tamanho-h3); margin-top: var(--espacamento-md); }
 
 /* ... (demais regras de estilo gerais) ... */
 
@@ -209,7 +222,7 @@ h1, h2, h3 {
     }
 
     /* *************************************** */
-    /* CORREÇÃO DO DROPDOWN (DESKTOP) */
+    /* CORREÇÃO CRÍTICA DO DROPDOWN (DESKTOP) */
     /* *************************************** */
     
     /* 3. Item Pai: Define a ancoragem */
@@ -217,10 +230,10 @@ h1, h2, h3 {
         position: relative; 
     }
 
-    /* 4. Sub-Menu: Esconde o dropdown e posiciona, **FORÇANDO** a regra de display */
-    /* Usando #main-nav para aumentar a especificidade e evitar que seja sobrescrito */
+    /* 4. Sub-Menu: Esconde e posiciona ABSOLUTAMENTE */
+    /* Uso do ID #main-nav e !important para garantir que anule qualquer conflito */
     #main-nav .nav-item.has-dropdown > .dropdown-menu { 
-        display: none !important; /* CRÍTICO: Força o display: none */
+        display: none !important; /* CRÍTICO: Força o display: none por padrão no desktop */
         
         /* Regras de Posicionamento */
         position: absolute; 
@@ -255,4 +268,14 @@ h1, h2, h3 {
 
     /* ... (demais regras de layout desktop) ... */
     
+    /* Layout do Formulário (2 colunas) */
+    fieldset {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: var(--espacamento-sm) var(--espacamento-md); 
+    }
+    legend, .agrupamento-funcionalidade, .termos, button,
+    label[for="endereco"], input#endereco {
+        grid-column: 1 / -1; 
+    }
 }
