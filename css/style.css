@@ -46,8 +46,8 @@ body {
     line-height: 1.6;
     color: var(--cor-neutra-escura);
     background-color: var(--cor-fundo-claro);
-    /* CORREÇÃO CRÍTICA FINAL: Aumentado para 200px para garantir o espaço do seu header */
-    padding-top: 200px; 
+    /* Padding-top seguro: 100px. Não precisa de 200px. */
+    padding-top: 100px; 
 }
 
 /* ACESSIBILIDADE */
@@ -164,9 +164,24 @@ h1, h2, h3 {
     margin-bottom: var(--espacamento-sm);
 }
 
-h1 { font-size: var(--tamanho-h1); margin-top: var(--espacamento-md); }
+hgroup {
+    /* Garante que o container de títulos não tem margem superior indesejada */
+    margin-top: 0; 
+    margin-bottom: var(--espacamento-md); 
+}
+
+h1 { 
+    font-size: var(--tamanho-h1); 
+    /* CORREÇÃO CRÍTICA: Definir margin-top como 0 para evitar que a margem "fuja" para cima do header fixo */
+    margin-top: 0; 
+}
 h2 { font-size: var(--tamanho-h2); margin-top: var(--espacamento-lg); }
 h3 { font-size: var(--tamanho-h3); margin-top: var(--espacamento-md); }
+
+/* CORREÇÃO AUXILIAR GERAL: Garante que o primeiro elemento dentro do main/container não tenha margem superior */
+.container > :first-child {
+    margin-top: 0 !important;
+}
 
 /* ... Outras regras de tipografia e links ... */
 
@@ -322,9 +337,9 @@ legend {
         display: inline-block; /* Mostra o botão CTA no header */
     }
 
-    /* CORREÇÃO APLICADA: Mantendo o padding-top em desktop */
+    /* Padding-top mantido para desktop */
     body {
-        padding-top: 200px; 
+        padding-top: 100px; 
     }
     
     /* Layout da Home - Hero */
