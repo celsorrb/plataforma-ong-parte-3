@@ -28,25 +28,36 @@
         <input type="tel" id="telefone" name="telefone" 
                required pattern="\(\d{2}\) \d{4,5}-\d{4}" 
                title="Formato de Telefone: (00) 00000-0000" placeholder="(00) 00000-0000">
-        <span class="error-feedback"></span> 
+        <span class="error-feedback"></span>
+
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" id="data_nascimento" name="data_nascimento">
         
-        <label for="data_nascimento">Data de Nascimento: *</label>
-        <input type="date" id="data_nascimento" name="data_nascimento" required>
     </fieldset>
 
     <fieldset>
         <legend>Endereço e Localização</legend>
-
+        
         <label for="cep">CEP: *</label>
         <input type="text" id="cep" name="cep" 
                required pattern="\d{5}-\d{3}" 
                title="Formato de CEP: 00000-000" placeholder="00000-000">
+        <span class="error-feedback"></span>
         
-        <label for="endereco">Endereço (Rua, Número, Bairro): *</label>
-        <input type="text" id="endereco" name="endereco" required placeholder="Preenchimento automático após o CEP">
+        <label for="endereco">Endereço (Rua/Av): *</label>
+        <input type="text" id="endereco" name="endereco" required>
+        
+        <label for="numero">Número: *</label>
+        <input type="text" id="numero" name="numero" required>
+        
+        <label for="complemento">Complemento:</label>
+        <input type="text" id="complemento" name="complemento">
+
+        <label for="bairro">Bairro: *</label>
+        <input type="text" id="bairro" name="bairro" required>
         
         <label for="cidade">Cidade: *</label>
-        <input type="text" id="cidade" name="cidade" required placeholder="Preenchimento automático">
+        <input type="text" id="cidade" name="cidade" required>
         
         <label for="estado">Estado: *</label>
         <select id="estado" name="estado" required>
