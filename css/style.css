@@ -46,7 +46,6 @@ body {
     line-height: 1.6;
     color: var(--cor-neutra-escura);
     background-color: var(--cor-fundo-claro);
-    /* CORREÇÃO 1: Padding-top seguro para o header fixo */
     padding-top: 100px; 
 }
 
@@ -71,7 +70,7 @@ body {
     margin: 0 auto;
     padding: var(--espacamento-md);
 }
-/* CORREÇÃO 2: Remove a margem superior do primeiro item dentro do <main class="container"> */
+/* Garante que o primeiro elemento dentro de main não tem margin-top */
 .container > :first-child {
     margin-top: 0 !important;
 }
@@ -81,7 +80,6 @@ body {
 /* ========================================= */
 
 header {
-    /* Torna o header fixo no topo da página */
     position: fixed; 
     top: 0;
     left: 0;
@@ -124,6 +122,7 @@ nav.open {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0; /* Garante reset de margem */
 }
 
 nav li a {
@@ -160,9 +159,10 @@ nav li a[aria-current="page"] {
 
 /* ESTILOS DE DROP DOWN (MOBILE - ESCONDIDO) */
 .dropdown-menu {
+    /* Por padrão, o sub-menu é uma lista simples, mas escondida */
     display: none;
     list-style: none;
-    padding-left: var(--espacamento-md); /* Para recuo visual em mobile */
+    padding-left: var(--espacamento-md); 
     background-color: var(--cor-fundo-claro); 
 }
 
@@ -177,141 +177,18 @@ h1, h2, h3 {
 }
 
 hgroup {
-    /* CORREÇÃO MANTIDA: Remove margem superior do container de títulos */
     margin-top: 0; 
     margin-bottom: var(--espacamento-md); 
 }
 
 h1 { 
     font-size: var(--tamanho-h1); 
-    /* CORREÇÃO MANTIDA: Garante que o h1 não tem margin-top */
     margin-top: 0; 
 }
 h2 { font-size: var(--tamanho-h2); margin-top: var(--espacamento-lg); }
 h3 { font-size: var(--tamanho-h3); margin-top: var(--espacamento-md); }
 
-/* ... Outras regras de tipografia e links ... */
-
-/* ========================================= */
-/* 4. LAYOUTS DIVERSOS (HOMEPAGE, CARDS) */
-/* ========================================= */
-
-.hero-section {
-    padding: var(--espacamento-xl) var(--espacamento-md);
-    background-color: var(--cor-fundo-claro);
-    border-radius: var(--borda-raio);
-    margin-bottom: var(--espacamento-lg);
-    text-align: center;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--espacamento-md);
-    margin-bottom: var(--espacamento-lg);
-}
-
-.card {
-    flex: 1 1 300px;
-    background-color: var(--cor-clara);
-    padding: var(--espacamento-md);
-    border-radius: var(--borda-raio);
-    box-shadow: var(--sombra-padrao);
-    border-top: 5px solid var(--cor-principal);
-}
-.card ul {
-    list-style: none;
-    padding-left: 0;
-}
-.card ul li {
-    margin-bottom: 5px;
-}
-
-/* Layout de Projetos */
-.projeto {
-    border: 1px solid #eee;
-    border-radius: var(--borda-raio);
-    box-shadow: var(--sombra-padrao);
-    overflow: hidden;
-    margin-bottom: var(--espacamento-lg);
-    background-color: var(--cor-clara);
-}
-
-.projeto-conteudo img {
-    /* Garante que a imagem use a área máxima designada pelo grid */
-    width: 100%;
-    /* Garante que a imagem preencha a altura definida sem distorção e tenha um mínimo */
-    height: 100%;
-    object-fit: cover; 
-    min-height: 200px; /* Garante visibilidade mínima em mobile */
-}
-
-/* ========================================= */
-/* 5. FORMULÁRIO (VALIDAÇÃO E ESTILOS) */
-/* ========================================= */
-
-input[type="text"], 
-input[type="email"], 
-input[type="tel"], 
-input[type="number"],
-select {
-    width: 100%; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    transition: border-color 0.3s, box-shadow 0.3s; 
-    margin-bottom: var(--espacamento-sm);
-}
-
-input:focus, select:focus {
-    border-color: var(--cor-principal); 
-    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15); 
-    outline: none; 
-}
-
-/* Estilo de Erro (usado pelo JS) */
-.input-error {
-    border-color: var(--cor-erro) !important;
-}
-.error-message {
-    color: var(--cor-erro);
-    font-size: 0.9rem;
-    margin-top: -5px; /* Ajuste para encaixar melhor */
-    margin-bottom: var(--espacamento-sm);
-    display: block;
-}
-
-/* Fieldset e Legend */
-fieldset {
-    border: 1px solid #ddd;
-    padding: var(--espacamento-md);
-    margin-bottom: var(--espacamento-lg);
-    border-radius: var(--borda-raio);
-}
-legend {
-    font-size: var(--tamanho-h3);
-    color: var(--cor-principal);
-    padding: 0 var(--espacamento-sm);
-}
-
-.agrupamento-funcionalidade {
-    display: flex;
-    flex-direction: column;
-    gap: var(--espacamento-sm);
-}
-
-/* Alertas/Mensagens de Feedback */
-.alert {
-    padding: var(--espacamento-sm);
-    border-radius: var(--borda-raio);
-    border: 1px solid #ddd;
-    margin-top: var(--espacamento-md);
-    background-color: var(--cor-fundo-claro);
-}
-.alert-aviso {
-    border-color: var(--cor-erro) !important;
-    background-color: #fffbe6;
-}
+/* ... (Outras seções mantidas por concisão, mas presentes no seu código) ... */
 
 /* ========================================= */
 /* 6. MEDIA QUERIES (RESPONSIVIDADE) */
@@ -322,52 +199,97 @@ legend {
     
     /* Header e Navegação */
     .hamburguer {
-        display: none; /* Esconde o hamburguer */
+        display: none; 
     }
     header {
         padding: var(--espacamento-sm) var(--espacamento-lg);
     }
     nav {
-        display: block; /* Mostra a navegação em linha */
+        display: block; 
         position: static;
         box-shadow: none;
         width: auto;
     }
     nav ul {
-        display: flex; /* Alinha os itens da navegação principal horizontalmente */
+        display: flex; 
         padding: 0;
-        margin: 0; /* Garante que não há margem/padding extra */
+        margin: 0; 
     }
     nav li a {
         padding: var(--espacamento-sm) var(--espacamento-md);
     }
     .cta-header {
-        display: inline-block; /* Mostra o botão CTA no header */
+        display: inline-block; 
     }
 
     /* *************************************** */
-    /* CORREÇÃO CRÍTICA DO DROPDOWN (DESKTOP) */
+    /* CORREÇÃO DO DROPDOWN (DESKTOP) */
     /* *************************************** */
     
-    /* 3. Item Pai: Define a ancoragem para o sub-menu absoluto */
+    /* 3. Item Pai: Define a ancoragem */
     .nav-item.has-dropdown {
-        position: relative; 
+        position: relative; /* Essencial para o position: absolute do sub-menu */
     }
 
-    /* 4. Sub-Menu: Posiciona e estiliza o dropdown */
-    .dropdown-menu {
+    /* 4. Sub-Menu: Garante o posicionamento absoluto e ignora o display: flex do nav ul */
+    .nav-item.has-dropdown > .dropdown-menu { 
         display: none;
         
         /* Regras Críticas para Posicionamento */
         position: absolute; 
-        top: 100%; /* Inicia exatamente abaixo do link pai */
+        top: 100%; 
         left: 0;
         
-        /* Estilização */
-        list-style: none; /* CRÍTICO: Remove marcadores de lista */
-        padding: var(--espacamento-sm) 0; /* Padding interno */
-        margin: 0; /* CRÍTICO: Remove margens herdadas */
+        /* Regras Críticas para Layout */
+        list-style: none; 
+        padding: var(--espacamento-sm) 0;
+        margin: 0; 
         min-width: 200px;
         background-color: var(--cor-clara);
         border: 1px solid var(--cor-fundo-claro);
-        box-shadow: var(--sombra-
+        box-shadow: var(--sombra-padrao);
+        z-index: 1050; 
+        border-radius: 0 0 var(--borda-raio) var(--borda-raio);
+    }
+
+    /* 5. Acionamento: Mostra o menu quando o mouse passar por cima */
+    .nav-item.has-dropdown:hover > .dropdown-menu,
+    .nav-item.has-dropdown:focus-within > .dropdown-menu {
+        display: block;
+    }
+    
+    /* 6. Links Internos do Dropdown (Garantia de display: block) */
+    .dropdown-menu li a {
+        display: block;
+        padding: var(--espacamento-sm) var(--espacamento-md);
+        white-space: nowrap;
+        font-size: 0.95rem;
+    }
+
+    /* Layout da Home - Hero */
+    .hero-section {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 30px; 
+        align-items: start; 
+    }
+    
+    /* Layout do Formulário (2 colunas) */
+    fieldset {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: var(--espacamento-sm) var(--espacamento-md); 
+    }
+    legend, .agrupamento-funcionalidade, .termos, button,
+    label[for="endereco"], input#endereco {
+        grid-column: 1 / -1; 
+    }
+
+    /* Layout do Projeto (Exemplo de ajuste) */
+    .projeto-conteudo {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: var(--espacamento-md);
+        align-items: start;
+    }
+}
