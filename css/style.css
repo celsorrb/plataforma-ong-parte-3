@@ -46,7 +46,7 @@ body {
     line-height: 1.6;
     color: var(--cor-neutra-escura);
     background-color: var(--cor-fundo-claro);
-    /* Padding-top seguro: 100px. Não precisa de 200px. */
+    /* 1. CORREÇÃO: Padding-top seguro para o header fixo */
     padding-top: 100px; 
 }
 
@@ -66,10 +66,15 @@ body {
 }
 
 /* CONTAINER GERAL */
+/* A classe .container está na tag <main> no seu HTML */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--espacamento-md);
+}
+/* 2. CORREÇÃO CRÍTICA: Remove a margem superior do primeiro item dentro do <main class="container"> */
+.container > :first-child {
+    margin-top: 0 !important;
 }
 
 /* ========================================= */
@@ -165,23 +170,18 @@ h1, h2, h3 {
 }
 
 hgroup {
-    /* Garante que o container de títulos não tem margem superior indesejada */
+    /* 3. CORREÇÃO: Remove margem superior do container de títulos */
     margin-top: 0; 
     margin-bottom: var(--espacamento-md); 
 }
 
 h1 { 
     font-size: var(--tamanho-h1); 
-    /* CORREÇÃO CRÍTICA: Definir margin-top como 0 para evitar que a margem "fuja" para cima do header fixo */
+    /* 4. CORREÇÃO: Garante que o h1 não tem margin-top */
     margin-top: 0; 
 }
 h2 { font-size: var(--tamanho-h2); margin-top: var(--espacamento-lg); }
 h3 { font-size: var(--tamanho-h3); margin-top: var(--espacamento-md); }
-
-/* CORREÇÃO AUXILIAR GERAL: Garante que o primeiro elemento dentro do main/container não tenha margem superior */
-.container > :first-child {
-    margin-top: 0 !important;
-}
 
 /* ... Outras regras de tipografia e links ... */
 
