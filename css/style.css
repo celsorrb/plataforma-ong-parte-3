@@ -1,0 +1,354 @@
+/* ========================================= */
+/* 1. SISTEMA DE DESIGN (ENTREGA II) */
+/* ========================================= */
+
+:root {
+    /* Paleta de Cores (Min. 8 Cores) */
+    --cor-principal: #0056b3; /* Azul Profundo (Brand Color) */
+    --cor-secundaria: #28a745; /* Verde (Sucesso/CTA) */
+    --cor-cta: #ff7e00; /* Laranja Vibrante (Call to Action) */
+    --cor-destaque: #6c757d; /* Cinza para Títulos Secundários */
+    --cor-erro: #dc3545; /* Vermelho (Erro) */
+    --cor-aviso: #ffc107; /* Amarelo (Badges, Alerta Leve) */
+    --cor-fundo-claro: #f4f4f9; /* Fundo Leve e Suave */
+    --cor-neutra-escura: #333333; /* Texto Principal */
+    --cor-clara: #ffffff;
+    
+    /* Tipografia Hierárquica (Min. 5 Tamanhos) */
+    --fonte-principal: 'Arial', sans-serif;
+    --tamanho-h1: 2.8rem;   
+    --tamanho-h2: 2.1rem;   
+    --tamanho-h3: 1.6rem;    
+    --tamanho-corpo: 1rem;  
+    --tamanho-pequeno: 0.8rem; 
+    
+    /* Sistema de Espaçamento Modular (Múltiplos de 8) */
+    --espacamento-xs: 8px;
+    --espacamento-sm: 16px;
+    --espacamento-md: 24px;
+    --espacamento-lg: 32px;
+    --espacamento-xl: 48px;
+    --espacamento-xxl: 64px;
+    
+    --sombra-padrao: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --transicao-rapida: all 0.2s ease-in-out;
+}
+
+/* RESET e Base Tipográfica */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    line-height: 1.6;
+    color: var(--cor-neutra-escura);
+    background-color: var(--cor-fundo-claro);
+    padding-top: 60px; 
+}
+
+/* Tipografia usando variáveis */
+a { text-decoration: none; color: var(--cor-principal); transition: var(--transicao-rapida); }
+a:hover { color: var(--cor-cta); }
+h1 { font-size: var(--tamanho-h1); color: var(--cor-principal); }
+h2 { font-size: var(--tamanho-h2); color: var(--cor-principal); border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; margin-bottom: var(--espacamento-md); }
+h3 { font-size: var(--tamanho-h3); color: var(--cor-destaque); margin-bottom: var(--espacamento-sm); }
+p { margin-bottom: var(--espacamento-sm); }
+img { max-width: 100%; height: auto; display: block; }
+section {
+    background-color: var(--cor-clara);
+    padding: var(--espacamento-lg);
+    margin-bottom: var(--espacamento-lg);
+    border-radius: 10px;
+    box-shadow: var(--sombra-padrao);
+}
+
+/* ACESSIBILIDADE */
+.skip-link {
+    position: absolute; top: -40px; left: 0; background: var(--cor-principal); color: var(--cor-clara);
+    padding: var(--espacamento-xs); z-index: 1001; transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+/* ========================================= */
+/* 2. LAYOUT GRID DE 12 COLUNAS E RESPONSIVIDADE */
+/* ========================================= */
+
+.container {
+    width: 100%;
+    max-width: 1280px; 
+    margin: 0 auto;
+    padding: 0 var(--espacamento-sm);
+}
+main {
+    padding-top: var(--espacamento-md); 
+}
+
+/* Sistema de Grid de 12 Colunas (Flexbox) */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--espacamento-xs)); 
+    margin-right: calc(-1 * var(--espacamento-xs));
+}
+[class^="col-"] {
+    width: 100%; /* Mobile First: Sempre 100% por padrão */
+    padding: 0 var(--espacamento-xs); /* Gutter */
+    margin-bottom: var(--espacamento-md); 
+}
+
+
+/* ========================================= */
+/* 3. NAVEGAÇÃO SOFISTICADA (ENTREGA II) */
+/* ========================================= */
+
+header {
+    background-color: var(--cor-clara); color: var(--cor-neutra-escura);
+    padding: 10px var(--espacamento-md); display: flex; justify-content: space-between;
+    align-items: center; box-shadow: var(--sombra-padrao);
+    position: fixed; width: 100%; top: 0; left: 0; z-index: 999;
+}
+.logo img { max-height: 40px; }
+
+/* Menu Hambúrguer (Mobile) */
+.hamburguer {
+    display: block; /* Visível por padrão em mobile */
+    font-size: 2rem; cursor: pointer; padding: 0 10px;
+    color: var(--cor-principal);
+}
+nav#main-nav {
+    position: fixed; top: 60px; left: 0;
+    width: 80%; max-width: 300px; height: 100%;
+    background-color: var(--cor-clara); box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    transform: translateX(-100%); transition: transform 0.3s ease-out;
+    padding-top: var(--espacamento-md); z-index: 99;
+}
+nav#main-nav.open {
+    transform: translateX(0); /* Abre o menu */
+}
+nav ul {
+    list-style: none; display: flex; flex-direction: column; 
+    gap: var(--espacamento-xs); padding: 0 var(--espacamento-md);
+}
+nav a {
+    text-decoration: none; color: var(--cor-neutra-escura);
+    font-weight: bold; padding: 10px 0; display: block;
+    transition: var(--transicao-rapida);
+}
+nav a:hover, nav a[aria-current="page"] {
+    color: var(--cor-principal);
+    background-color: var(--cor-fundo-claro);
+}
+
+/* Dropdown (Mobile) */
+.has-dropdown .dropdown-menu {
+    list-style: none; padding-left: var(--espacamento-md); display: none;
+    background-color: #e9ecef; 
+}
+.has-dropdown.active .dropdown-menu {
+    display: block;
+}
+.has-dropdown > a {
+    position: relative;
+    /* Adicionar um pequeno indicador de dropdown se desejar */
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .hamburguer { display: none; }
+    nav#main-nav { 
+        position: static; transform: none; width: auto; max-width: none; 
+        box-shadow: none; padding-top: 0; height: auto;
+    }
+    nav ul { 
+        flex-direction: row; gap: var(--espacamento-md); padding: 0;
+    }
+    nav a { 
+        padding: 5px 10px; border-bottom: 2px solid transparent; 
+    }
+    nav a:hover, nav a[aria-current="page"] { 
+        border-bottom-color: var(--cor-principal); background-color: transparent;
+    }
+
+    /* Dropdown (Desktop) */
+    .has-dropdown { position: relative; }
+    .has-dropdown .dropdown-menu {
+        position: absolute; top: 100%; left: 0; 
+        background-color: var(--cor-clara); box-shadow: var(--sombra-padrao);
+        min-width: 180px; padding: 10px 0; z-index: 10;
+        display: none; 
+        padding-left: 0; /* Remove padding lateral em desktop */
+    }
+    .has-dropdown:hover .dropdown-menu, .has-dropdown:focus-within .dropdown-menu {
+        display: block;
+    }
+    .dropdown-menu a {
+        padding: 8px var(--espacamento-sm); border-bottom: none; 
+        white-space: nowrap;
+    }
+    .dropdown-menu a:hover {
+        background-color: var(--cor-fundo-claro);
+    }
+}
+
+/* ========================================= */
+/* 4. COMPONENTES DE INTERFACE (ENTREGA II & III) */
+/* ========================================= */
+
+/* Botão CTA com Estados Visuais */
+.cta-button {
+    display: inline-block; background-color: var(--cor-secundaria);
+    color: var(--cor-clara); padding: 10px 20px; border-radius: 5px;
+    text-decoration: none; font-weight: bold; margin-top: var(--espacamento-sm);
+    transition: var(--transicao-rapida); border: none; cursor: pointer;
+}
+.cta-button:hover, .cta-button:focus { background-color: #1e7e34; }
+.cta-button:active { background-color: #145e26; }
+.cta-button:disabled { background-color: var(--cor-destaque); cursor: not-allowed; opacity: 0.6; }
+
+/* Badges e Tags (Categorização) */
+.badge {
+    display: inline-block; padding: 4px 8px; border-radius: 4px;
+    font-size: var(--tamanho-pequeno); font-weight: bold; white-space: nowrap;
+}
+.badge-primario { background-color: var(--cor-principal); color: var(--cor-clara); }
+.badge-secundario { background-color: var(--cor-secundaria); color: var(--cor-clara); }
+.badge-aviso { background-color: var(--cor-aviso); color: var(--cor-neutra-escura); }
+.badge-erro { background-color: var(--cor-erro); color: var(--cor-clara); }
+
+/* Componente de Feedback (Alerts) */
+.alert {
+    padding: var(--espacamento-sm); border-radius: 4px; border: 1px solid transparent;
+    margin-top: var(--espacamento-sm);
+}
+.alert-sucesso { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+.alert-aviso { background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+
+/* Formulários Estilizados com Validação Visual (HTML5 e JS) */
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
+    width: 100%; padding: 10px; margin-bottom: var(--espacamento-sm);
+    border: 1px solid #ccc; border-radius: 4px; font-size: var(--tamanho-corpo);
+}
+input:focus, select:focus, textarea:focus {
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15);
+    outline: none;
+}
+/* Validação de Consistência (JS) e Visualização */
+.error-feedback {
+    display: block; color: var(--cor-erro); font-size: var(--tamanho-pequeno);
+    margin-top: -10px; margin-bottom: var(--espacamento-sm); height: 1em;
+}
+.input-error {
+    border-color: var(--cor-erro) !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
+}
+
+/* PROJETOS (Cards Responsivos) */
+.projeto-conteudo {
+    display: flex; /* Garante que figure e div fiquem lado a lado em desktop */
+    flex-direction: column;
+}
+.projeto figure {
+    margin-bottom: var(--espacamento-sm);
+}
+.projeto img {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+.indicadores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacamento-sm);
+    margin-top: var(--espacamento-sm);
+    font-size: 0.9em;
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--cor-neutra-escura); color: var(--cor-clara);
+    text-align: center; padding: var(--espacamento-md) var(--espacamento-lg);
+    margin-top: var(--espacamento-xl); display: flex;
+    justify-content: space-between; align-items: center;
+}
+footer a { color: var(--cor-secundaria); }
+.social-links a { color: var(--cor-clara); margin-left: var(--espacamento-sm); }
+
+
+/* ========================================= */
+/* 5. MEDIA QUERIES (5 BREAKPOINTS) */
+/* ========================================= */
+
+/* 2. Mobile Small (SM) - 480px */
+@media (min-width: 480px) {
+    /* Sem ajustes de grid neste breakpoint */
+}
+
+/* 3. Tablet (MD) - 768px */
+@media (min-width: 768px) {
+    .container { padding: 0 var(--espacamento-md); }
+    
+    /* Layout do Grid de 12 Colunas (MD) */
+    .col-md-3 { width: 25%; }
+    .col-md-4 { width: 33.333%; }
+    .col-md-6 { width: 50%; }
+
+    /* Layouts Específicos */
+    .hero-section {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: var(--espacamento-lg);
+        align-items: center;
+    }
+    
+    /* Nossos Pilares (Flexbox/Grid para 3 colunas) */
+    .destaques { display: flex; gap: var(--espacamento-md); margin-top: var(--espacamento-md); }
+    .destaques article { flex: 1; padding: var(--espacamento-sm); border: 1px solid #eee; border-radius: 4px; }
+    
+    /* Layout do Formulário (Grid 2 colunas) */
+    fieldset {
+        display: grid; grid-template-columns: 1fr 1fr; gap: var(--espacamento-sm) var(--espacamento-md);
+    }
+    legend, .agrupamento-funcionalidade, .termos, button,
+    label[for="endereco"], input#endereco {
+        grid-column: 1 / -1; 
+    }
+    [class^="col-"] {
+        margin-bottom: 0;
+    }
+}
+
+/* 4. Desktop Large (LG) - 1024px */
+@media (min-width: 1024px) {
+    .col-lg-3 { width: 25%; }
+
+    /* Layout de Cards (2 ou 3 colunas) */
+    .projetos-container {
+        display: flex; flex-wrap: wrap; 
+        margin-left: calc(-1 * var(--espacamento-xs)); 
+        margin-right: calc(-1 * var(--espacamento-xs));
+    }
+    .projeto {
+        width: 50%; /* 2 colunas */
+        padding: 0 var(--espacamento-xs);
+        margin-bottom: var(--espacamento-lg);
+    }
+    .projeto-conteudo {
+        border: 1px solid #eee; border-radius: 8px; overflow: hidden; height: 100%;
+        box-shadow: var(--sombra-padrao);
+        display: flex; flex-direction: column;
+    }
+    .projeto figure { height: 200px; margin-bottom: 0;}
+    .projeto-conteudo > div { padding: var(--espacamento-sm); flex-grow: 1; display: flex; flex-direction: column;}
+}
+
+/* 5. Desktop Extra Large (XL) - 1280px */
+@media (min-width: 1280px) {
+    .container { max-width: 1440px; }
+    
+    /* Layout de Cards (3 colunas) */
+    .projeto { width: 33.333%; }
+}
