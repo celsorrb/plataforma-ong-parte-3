@@ -46,8 +46,8 @@ body {
     line-height: 1.6;
     color: var(--cor-neutra-escura);
     background-color: var(--cor-fundo-claro);
-    /* CORREÇÃO CRÍTICA FINAL: Aumentado para 130px para garantir o espaço do seu header */
-    padding-top: 130px; 
+    /* CORREÇÃO CRÍTICA FINAL: Aumentado para 200px para garantir o espaço do seu header */
+    padding-top: 200px; 
 }
 
 /* ACESSIBILIDADE */
@@ -324,7 +324,7 @@ legend {
 
     /* CORREÇÃO APLICADA: Mantendo o padding-top em desktop */
     body {
-        padding-top: 130px; 
+        padding-top: 200px; 
     }
     
     /* Layout da Home - Hero */
