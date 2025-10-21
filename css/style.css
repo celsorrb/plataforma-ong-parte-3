@@ -4,21 +4,21 @@
 
 :root {
     /* Paleta de Cores (Min. 8 Cores) */
-    --cor-principal: #0056b3; /* Azul Profundo (Brand Color)*/
-    --cor-secundaria: #28a745; /* Verde (Sucesso/CTA)*/
-    --cor-cta: #ff7e00; /* Laranja Vibrante (Call to Action)*/
-    --cor-destaque: #6c757d; /* Cinza para Títulos Secundários*/
-    --cor-erro: #dc3545; /* Vermelho (Erro)*/
-    --cor-aviso: #ffc107; /* Amarelo (Badges, Alerta Leve)*/
-    --cor-fundo-claro: #f4f4f9; /* Fundo Leve e Suave*/
-    --cor-neutra-escura: #333333; /* Texto Principal*/
+    --cor-principal: #0056b3; /* Azul Profundo (Brand Color) */
+    --cor-secundaria: #28a745; /* Verde (Sucesso/CTA) */
+    --cor-cta: #ff7e00; /* Laranja Vibrante (Call to Action) */
+    --cor-destaque: #6c757d; /* Cinza para Títulos Secundários */
+    --cor-erro: #dc3545; /* Vermelho (Erro) */
+    --cor-aviso: #ffc107; /* Amarelo (Badges, Alerta Leve) */
+    --cor-fundo-claro: #f4f4f9; /* Fundo Leve e Suave */
+    --cor-neutra-escura: #333333; /* Texto Principal */
     --cor-clara: #ffffff;
     
-    /* Tipografia Hierárquica (Min. 5 Tamanhos)*/
+    /* Tipografia Hierárquica (Min. 5 Tamanhos) */
     --fonte-principal: 'Arial', sans-serif;
-    --tamanho-h1: 2.8rem;  
-    --tamanho-h2: 2.1rem;  
-    --tamanho-h3: 1.6rem;   
+    --tamanho-h1: 2.8rem;   
+    --tamanho-h2: 2.1rem;   
+    --tamanho-h3: 1.6rem;    
     --tamanho-corpo: 1rem;  
     
     /* Espaçamentos (Min. 5 Níveis) */
@@ -46,8 +46,8 @@ body {
     line-height: 1.6;
     color: var(--cor-neutra-escura);
     background-color: var(--cor-fundo-claro);
-    /* CORREÇÃO APLICADA: Aumentado para dar espaço ao header fixo */
-    padding-top: 100px; 
+    /* CORREÇÃO CRÍTICA FINAL: Aumentado para 130px para garantir o espaço do seu header */
+    padding-top: 130px; 
 }
 
 /* ACESSIBILIDADE */
@@ -233,18 +233,18 @@ input[type="email"],
 input[type="tel"], 
 input[type="number"],
 select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    transition: border-color 0.3s, box-shadow 0.3s; 
     margin-bottom: var(--espacamento-sm);
 }
 
 input:focus, select:focus {
-    border-color: var(--cor-principal);
-    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15);
-    outline: none;
+    border-color: var(--cor-principal); 
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15); 
+    outline: none; 
 }
 
 /* Estilo de Erro (usado pelo JS) */
@@ -287,7 +287,7 @@ legend {
     background-color: var(--cor-fundo-claro);
 }
 .alert-aviso {
-    border-color: var(--cor-aviso) !important;
+    border-color: var(--cor-erro) !important;
     background-color: #fffbe6;
 }
 
@@ -322,28 +322,28 @@ legend {
         display: inline-block; /* Mostra o botão CTA no header */
     }
 
-    /* CORREÇÃO APLICADA: Mantendo o padding-top em desktop para o header fixo */
+    /* CORREÇÃO APLICADA: Mantendo o padding-top em desktop */
     body {
-        padding-top: 100px; 
+        padding-top: 130px; 
     }
     
     /* Layout da Home - Hero */
     .hero-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        align-items: start;
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 30px; 
+        align-items: start; 
     }
     
     /* Layout do Formulário (2 colunas) */
     fieldset {
         display: grid; 
         grid-template-columns: 1fr 1fr; 
-        gap: var(--espacamento-sm) var(--espacamento-md);
+        gap: var(--espacamento-sm) var(--espacamento-md); 
     }
     legend, .agrupamento-funcionalidade, .termos, button,
     label[for="endereco"], input#endereco {
-        grid-column: 1 / -1;
+        grid-column: 1 / -1; 
     }
 
     /* Layout do Projeto (Exemplo de ajuste) */
